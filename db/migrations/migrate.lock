@@ -1,3 +1,6 @@
 # Prisma Migrate lockfile v1
 
 20201229092557-initial-migration
+20201229111911-postgres
+20201229131019-movie-company
+20201229131132-float

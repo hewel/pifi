@@ -2,7 +2,7 @@
   "name": "pifi",
   "version": "1.0.0",
   "scripts": {
-    "start": "blitz start",
+    "start": "sudo docker-compose up -d && blitz start",
     "studio": "blitz db studio",
     "build": "blitz build",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",

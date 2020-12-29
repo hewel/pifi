@@ -1,0 +1,17 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "UpdateField",
+      "model": "Movie",
+      "field": "budget",
+      "type": "Float"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Movie",
+      "field": "revenue",
+      "type": "Float"
+    }
+  ]
+}
