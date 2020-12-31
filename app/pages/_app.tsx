@@ -2,23 +2,41 @@ import { AppProps, ErrorComponent, useRouter, AuthenticationError, Authorization
 import { ErrorBoundary, FallbackProps } from "react-error-boundary"
 import { queryCache } from "react-query"
 import LoginForm from "app/auth/components/LoginForm"
+import { globalStyles } from "app/styles"
+import CssBaseline from "@material-ui/core/CssBaseline"
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
+import { blue } from "@material-ui/core/colors"
+import React from "react"
+
+import "app/styles/index.css"
+
+//You can customize this as you want and even move it out to a separate file
+const theme = createMuiTheme({
+  palette: {
+    mode: "light",
+    primary: blue,
+  },
+})
 
 export default function App({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
   const router = useRouter()
-
   return (
-    <ErrorBoundary
-      FallbackComponent={RootErrorFallback}
-      resetKeys={[router.asPath]}
-      onReset={() => {
-        // This ensures the Blitz useQuery hooks will automatically refetch
-        // data any time you reset the error boundary
-        queryCache.resetErrorBoundaries()
-      }}
-    >
-      {getLayout(<Component {...pageProps} />)}
-    </ErrorBoundary>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <ErrorBoundary
+        FallbackComponent={RootErrorFallback}
+        resetKeys={[router.asPath]}
+        onReset={() => {
+          // This ensures the Blitz useQuery hooks will automatically refetch
+          // data any time you reset the error boundary
+          queryCache.resetErrorBoundaries()
+        }}
+      >
+        {globalStyles}
+        {getLayout(<Component {...pageProps} />)}
+      </ErrorBoundary>
+    </ThemeProvider>
   )
 }
 
