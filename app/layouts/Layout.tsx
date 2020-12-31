@@ -13,7 +13,6 @@ const Layout = ({ title, children }: LayoutProps) => {
         <title>{title || "pifi"}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       {children}
     </>
   )
