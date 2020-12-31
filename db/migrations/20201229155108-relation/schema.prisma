@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -57,8 +57,6 @@ model Movie {
   tagline     String?
   imdbRate    Int?
   doubanRate  Int?
-  backdrop    String?
-  poster      String?
 }
 
 model Company {

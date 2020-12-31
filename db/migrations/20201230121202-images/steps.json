@@ -1,0 +1,19 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Movie",
+      "field": "backdrop",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Movie",
+      "field": "poster",
+      "type": "String",
+      "arity": "Optional"
+    }
+  ]
+}

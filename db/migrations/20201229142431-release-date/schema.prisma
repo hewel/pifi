@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -44,11 +44,11 @@ model Movie {
   title       String
   overview    String?
   homepage    String?
-  tmdbId      Int       @unique
+  tmdbId      Int
   imdbId      String?
   language    String?
-  popularity  Float?
-  companies   Company[]
+  popularity  Int?
+  companies   Company[] @relation(references: [id])
   countries   Region[]
   releaseDate DateTime?
   budget      Float?
@@ -57,22 +57,20 @@ model Movie {
   tagline     String?
   imdbRate    Int?
   doubanRate  Int?
-  backdrop    String?
-  poster      String?
 }
 
 model Company {
-  id              Int       @id @default(autoincrement())
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-  name            String
-  description     String?
-  tmdbId          Int       @unique
-  region          Region?
-  parentCompany   Company?  @relation("CompanyToCompany", fields: [parentCompanyId], references: [id])
-  movies          Movie[]
-  subsidiaries    Company[] @relation("CompanyToCompany")
-  parentCompanyId Int?
+  id            Int       @id @default(autoincrement())
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  name          String
+  description   String?
+  tmdbId        Int
+  region        Region?
+  parentCompany Company?  @relation("CompanyToCompany", fields: [companyId], references: [id])
+  movies        Movie[]   @relation(references: [id])
+  subsidiaries  Company[] @relation("CompanyToCompany")
+  companyId     Int?
 }
 
 enum Region {
