@@ -1,8 +1,7 @@
 import { Suspense } from "react"
 import Layout from "app/layouts/Layout"
-import MuiLayout from "app/layouts/MuiLayout"
 import { usePaginatedQuery, useRouter, BlitzPage, Link } from "blitz"
-import { Link as MuiLink, Typography, CardMedia } from "@material-ui/core"
+import { Link as MuiLink, Typography } from "@material-ui/core"
 import Poster from "app/movies/components/Poster"
 import getMovies from "app/movies/queries/getMovies"
 
@@ -22,7 +21,7 @@ export const MoviesList = () => {
   const goToNextPage = () => router.push({ query: { page: page + 1 } })
 
   return (
-    <MuiLayout title={TITLE}>
+    <div>
       <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-4">
         {movies.map((movie) => {
           const movieReleaseYear = movie.releaseDate?.getFullYear()
@@ -65,7 +64,7 @@ export const MoviesList = () => {
       <button disabled={!hasMore} onClick={goToNextPage}>
         Next
       </button>
-    </MuiLayout>
+    </div>
   )
 }
 
@@ -79,6 +78,6 @@ const MoviesPage: BlitzPage = () => {
   )
 }
 
-MoviesPage.getLayout = (page) => <Layout title={"Movies"}>{page}</Layout>
+MoviesPage.getLayout = (page) => <Layout title={TITLE}>{page}</Layout>
 
 export default MoviesPage

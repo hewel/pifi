@@ -1,7 +1,8 @@
 import { ReactNode } from "react"
 import { Head } from "blitz"
+import MuiLayout from "./MuiLayout"
 
-type LayoutProps = {
+export type LayoutProps = {
   title?: string
   children: ReactNode
 }
@@ -13,7 +14,7 @@ const Layout = ({ title, children }: LayoutProps) => {
         <title>{title || "pifi"}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {children}
+      <MuiLayout title={title}>{children}</MuiLayout>
     </>
   )
 }

@@ -1,11 +1,7 @@
 import React, { ImgHTMLAttributes, useRef, useState } from "react"
-import { css } from "@emotion/react"
-import clsx from "clsx"
 import useMergedRef from "@react-hook/merged-ref"
 import { useThrottleCallback } from "@react-hook/throttle"
 import useWindowResize from "app/hooks/useWindowResize"
-
-interface PosterProps extends ImgHTMLAttributes<HTMLImageElement> {}
 
 const Poster = React.forwardRef<HTMLImageElement, ImgHTMLAttributes<HTMLImageElement>>(
   ({ alt, ...props }, ref) => {

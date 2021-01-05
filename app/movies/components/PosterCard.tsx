@@ -1,6 +1,6 @@
 import React from "react"
 
-function PosterCard() {
+const PosterCard = () => {
   return <div></div>
 }
 

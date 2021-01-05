@@ -1,6 +1,8 @@
 import React from "react"
-import { Link, useRouter } from "blitz"
-import { Breadcrumbs, Link as MuiLink } from "@material-ui/core"
+import clsx from "clsx"
+import { useRouter } from "blitz"
+import { Breadcrumbs, Typography } from "@material-ui/core"
+import Link from "app/components/Link"
 
 interface NavProps {
   hidden?: boolean
@@ -18,6 +20,7 @@ function Nav({ hidden = false }: NavProps) {
         paths.map((path, index) => {
           const isLast = index === paths.length - 1
           const isParam = /\[\w+\]/.test(path)
+          const name = isParam ? params[path.slice(1, -1)] : path || "Home"
           const href = () => {
             if (isParam) {
               return paths.slice(0, index).join("/") + params[path.slice(1, -1)]
@@ -25,15 +28,17 @@ function Nav({ hidden = false }: NavProps) {
               return paths.slice(0, index + 1).join("/") || "/"
             }
           }
-          return (
-            <MuiLink
+          return isLast ? (
+            <Typography>{name}</Typography>
+          ) : (
+            <Link
               key={path}
-              component="span"
+              className={clsx("cursor-pointer")}
               href={href()}
               color={isLast ? "primary" : "initial"}
             >
-              <Link href={href()}>{isParam ? params[path.slice(1, -1)] : path || "Home"}</Link>
-            </MuiLink>
+              {name}
+            </Link>
           )
         })}
     </Breadcrumbs>

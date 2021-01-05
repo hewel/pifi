@@ -42,7 +42,7 @@ const seed = async () => {
     const movieDetails = await getMovie(id)
     await db.movie.update({
       data: {
-        title: trim(movieDetails?.original_title),
+        title: trim(movieDetails?.title),
         overview: trim(movieDetails?.overview),
         homepage: movieDetails?.homepage,
         tmdbId: movieDetails?.id,

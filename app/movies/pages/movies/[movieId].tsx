@@ -1,28 +1,32 @@
 import { Suspense } from "react"
 import Layout from "app/layouts/Layout"
-import MuiLayout from "app/layouts/MuiLayout"
-import { Link, useQuery, useParam, BlitzPage } from "blitz"
+import { Link, useQuery, useParam, BlitzPage, Head } from "blitz"
 import getMovie from "app/movies/queries/getMovie"
+import Nav from "app/components/Nav"
 
 export const Movie = () => {
   const movieId = useParam("movieId", "number")
   const [movie] = useQuery(getMovie, { where: { id: movieId } })
 
   return (
-    <MuiLayout title={`movie-${movieId}`}>
+    <div>
+      <Head>
+        <title>{movie.title}</title>
+      </Head>
       <h1>Movie {movie.id}</h1>
       <pre>{JSON.stringify(movie, null, 2)}</pre>
 
       <Link href={`/movies/${movie.id}/edit`}>
         <a>Edit</a>
       </Link>
-    </MuiLayout>
+    </div>
   )
 }
 
 const ShowMoviePage: BlitzPage = () => {
   return (
     <div>
+      <Nav />
       <Suspense fallback={<div>Loading...</div>}>
         <Movie />
       </Suspense>
