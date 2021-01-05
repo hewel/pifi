@@ -22,7 +22,7 @@ export const EditMovie = () => {
           try {
             const updated = await updateMovieMutation({
               where: { id: movie.id },
-              data: { name: "MyNewName" },
+              data: { title: "MyNewName" },
             })
             await setQueryData(updated)
             alert("Success!" + JSON.stringify(updated))
