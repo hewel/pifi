@@ -15,7 +15,7 @@ const NewMoviePage: BlitzPage = () => {
         initialValues={{}}
         onSubmit={async () => {
           try {
-            const movie = await createMovieMutation({ data: { name: "MyName" } })
+            const movie = await createMovieMutation({ data: { title: "MyName", tmdbId: 1 } })
             alert("Success!" + JSON.stringify(movie))
             router.push(`/movies/${movie.id}`)
           } catch (error) {

@@ -15,7 +15,7 @@ const NewCompanyPage: BlitzPage = () => {
         initialValues={{}}
         onSubmit={async () => {
           try {
-            const company = await createCompanyMutation({ data: { name: "MyName" } })
+            const company = await createCompanyMutation({ data: { name: "MyName", tmdbId: 12 } })
             alert("Success!" + JSON.stringify(company))
             router.push(`/companies/${company.id}`)
           } catch (error) {
